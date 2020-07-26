@@ -25,7 +25,7 @@ if (!process.env.NODE_ENV === 'dev'){
 }
 else{
     // Al abrir mongo Compass, ir a la collection test, ahí estará almacenada esta base de datos
-    urlDB = 'mongodb+srv://Seba:VjFU9N1KVgyyPFo3@cluster0.yttos.mongodb.net/test'
+    urlDB = process.env.MONGO_URI;
 }
 
 process.env.URLDB = urlDB
