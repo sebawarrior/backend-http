@@ -1,0 +1,11 @@
+
+Para Mongo Atlas:
+
+user: Seba
+pass: VjFU9N1KVgyyPFo3
+
+Mongo DB URL
+
+mongodb+srv://Seba:VjFU9N1KVgyyPFo3@cluster0.yttos.mongodb.net/test
+
+cluster0.yttos.mongodb.net -> Esto es lo que va en el hostname
