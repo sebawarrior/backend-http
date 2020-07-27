@@ -11,9 +11,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.use(require('./routes/usuario'))
+//Para evitar decalrar cada uno de estos
+// app.use(require('./routes/usuario'))
+// app.use(require('./routes/login'))
 
-// Esto se va aconectar solo si ya ejecutamos mongod en terminal:
+//Rutas
+app.use(require('./routes/index'))
+
+
+// Esto se va a conectar solo si ya ejecutamos mongod en terminal:
 // mongod --dbpath /System/Volumes/Data/data/db --port 12345
 mongoose.connect(process.env.URLDB, (err, res) => {
     if (err) {

@@ -20,7 +20,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev'
 
 let urlDB;
 
-if (!process.env.NODE_ENV === 'dev'){
+if (process.env.NODE_ENV === 'dev'){
     urlDB = 'mongodb://localhost:12345/cafe'
 }
 else{
@@ -29,3 +29,15 @@ else{
 }
 
 process.env.URLDB = urlDB
+
+// ========================
+//  Vencimiento del Token
+// ========================
+
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30 // En segundos
+
+// ========================
+//  Seed de autenticación
+// ========================
+
+process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';

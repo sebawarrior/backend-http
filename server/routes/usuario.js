@@ -4,11 +4,16 @@ const bcrypt = require('bcrypt');
 const _ = require('underscore')
 
 const Usuario = require('../models/usuario')
+const {verificaToken, verificaAdmin} = require('./../middlewares/autenticacion')
 
-app.get('/usuario', function (req, res) {
+//Un middleware va en el segundo argumento de las funciones
+
+app.get('/usuario', verificaToken, function (req, res) {
     //res.send('Hello World!'); // Esto envía un html
     //Queremos enviar un json
     //res.json('GET usuario')
+    
+
     let desde = Number(req.query.desde || 0);
     let limite = Number(req.query.limite || 0)
 
@@ -38,7 +43,7 @@ app.get('/usuario', function (req, res) {
 
 });
   
-app.post('/usuario', function (req, res) {
+app.post('/usuario', [verificaToken, verificaAdmin], function (req, res) {
     //res.send('Hello World!'); // Esto envía un html
     //Queremos enviar un json
 
@@ -70,7 +75,7 @@ app.post('/usuario', function (req, res) {
 
   });
   
-app.put('/usuario/:id', function (req, res) {
+app.put('/usuario/:id', [verificaToken, verificaAdmin], function (req, res) {
     //res.send('Hello World!'); // Esto envía un html
     //Queremos enviar un json
 
@@ -105,7 +110,7 @@ app.put('/usuario/:id', function (req, res) {
 });
 
 // En general yo no quiero borrar registros, sino que solamente cambiar un estado a false
-app.delete('/usuario/:id', function (req, res) {
+app.delete('/usuario/:id', [verificaToken, verificaAdmin], function (req, res) {
     //res.send('Hello World!'); // Esto envía un html
     //Queremos enviar un json
     //res.json('DELETE usuario')
