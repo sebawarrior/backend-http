@@ -21,8 +21,8 @@ let verificaToken = (req, res, next) => {
             })
         }
         //decoded contiene el payload
-        req.usuario = decoded.usuarioDB;
-        // console.log(decoded)
+        req.usuario = decoded.usuario;
+        console.log(decoded)
         next();
 
     })
@@ -38,6 +38,8 @@ let verificaToken = (req, res, next) => {
 
 let verificaAdmin = (req, res, next) => {
     let usuario = req.usuario;
+    console.log('-----')
+    console.log(usuario)
     if (!(usuario.role === 'ADMIN_ROLE')){
         res.status(401).json({
             ok: false,

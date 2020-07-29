@@ -6,7 +6,6 @@ const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
 const Usuario = require('../models/usuario');
-const usuario = require('../models/usuario');
 
 app.post('/login', (req, res) => {
 
@@ -41,7 +40,7 @@ app.post('/login', (req, res) => {
             })
         }
 
-        let token = jwt.sign({usuarioDB}, process.env.SEED, {expiresIn: process.env.CADUCIDAD_TOKEN}) // expiresIn está en segundos
+        let token = jwt.sign({usuario: usuarioDB}, process.env.SEED, {expiresIn: process.env.CADUCIDAD_TOKEN}) // expiresIn está en segundos
         //Ojo, los token van en el header como authorization
 
         res.json({
