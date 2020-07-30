@@ -1,3 +1,11 @@
+
+// =================================
+//    Correr mongo DB en terminal
+// =================================
+
+// mongod --dbpath /System/Volumes/Data/data/db --port 12345 
+
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
