@@ -17,7 +17,9 @@ let verificaToken = (req, res, next) => {
         if (err){
             return res.status(401).json({
                 ok: false,
-                err
+                err: {
+                    message: 'Token no válido'
+                }
             })
         }
         //decoded contiene el payload
@@ -31,6 +33,33 @@ let verificaToken = (req, res, next) => {
     // luego de ejecutar el middleware
 
 };
+
+// ======================
+//   Verficar TokenImg
+// ======================
+
+let verificaTokenImg = (req, res, next) => {
+
+    let token = req.query.token;
+
+    jwt.verify(token, process.env.SEED, (err, decoded) => {
+        if (err){
+            return res.status(401).json({
+                ok: false,
+                err: {
+                    message: 'Token no válido'
+                }
+            })
+        }
+        //decoded contiene el payload
+        req.usuario = decoded.usuario;
+        next();
+
+    })
+
+}
+
+
 
 // ======================
 //     Verficar Admin
@@ -53,5 +82,6 @@ let verificaAdmin = (req, res, next) => {
 
 module.exports = {
     verificaToken,
-    verificaAdmin
+    verificaAdmin,
+    verificaTokenImg
 }
